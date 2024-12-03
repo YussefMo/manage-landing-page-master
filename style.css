@@ -3,20 +3,39 @@
 {
     padding: 0;
     margin: 0;
+    transition: all 0.5s;
 }
 :root
 {
-    color: var(--Dark-Blue);
     font-size: 16px;
+    --bg: white;
+    --bgmg: url(./images/bg-tablet-pattern.svg);
     --Bright-Red: hsl(12, 88%, 59%);
     --Dark-Blue: hsl(228, 39%, 23%);
     --Dark-Grayish-Blue: hsl(227, 12%, 61%);
     --Very-Dark-Blue: hsl(233, 12%, 13%);
     --Very-Pale-Red: hsl(12, 100%, 83%);
     --Very-Light-Gray: hsl(0, 0%, 98%);
+    --linear: transparent , rgba(0, 0, 0, 0.74);
     --fw400: 400;
     --fw500: 500;
     --fw700: 700;
+}
+.dark
+{
+    --bg: hsl(228, 19%, 21%);
+    --bgmg: url(./images/bg-tablet-pattern-dark.svg);
+    --Bright-Red: hsl(268, 88%, 59%);
+    --Dark-Blue: hsl(228, 21%, 86%);
+    --Dark-Grayish-Blue: hsl(0, 0%, 100%);
+    --Very-Dark-Blue: hsl(233, 12%, 13%);
+    --Very-Pale-Red: hsl(278, 100%, 83%);
+    --Very-Light-Gray: hsl(0, 0%, 61%);
+    --linear: transparent , rgba(255, 255, 255, 0.74);
+}
+h1
+{
+    color: var(--Dark-Blue);
 }
 img
 {
@@ -29,6 +48,7 @@ img:hover
 /* asgin font */
 body 
 {
+    background-color: var(--bg);
     font-family: "Be Vietnam Pro", sans-serif;
 }
 /* header */
@@ -38,8 +58,9 @@ header
     display: flex;
     flex-flow: row wrap;
     height: 800px;
-    background: url(./images/bg-tablet-pattern.svg) no-repeat top right;
+    background: var(--bgmg) no-repeat top right;
     background-position: calc(100% + 100px) calc(0% - 100px);
+    background-blend-mode: soft-light ;
 }
 .logo
 {
@@ -48,6 +69,56 @@ header
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.hide
+{
+    display: none;
+}
+.toggel
+{
+    height: 40px;
+    width: 80px;
+    background-color: var(--Dark-Grayish-Blue);
+    border-radius: 50px;
+    margin-left: 15%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.toggel .circle
+{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: var(--Bright-Red);
+    top: 2px;
+    left: 2px;
+    position: relative;
+    transition: all 0.3s;
+}
+.toggel.chng
+{
+    background-color: var(--Dark-Blue);
+}
+.circle.chng
+{
+    top: 2px;
+    left: 42px;
+}
+.fa-regular
+{
+    top: 5px;
+    left: 5px;
+    font-size: 1.5rem;
+    position: absolute;
+    color: white;
+    display: none;
+    transition: all 0.3s; 
+}
+.active
+{
+    display: block;
 }
 .nav
 {
@@ -228,7 +299,7 @@ header button:active
     justify-content: center;
     height: fit-content;
     width: 100%;
-    background: url(./images/bg-tablet-pattern.svg) bottom left no-repeat;
+    background: var(--bgmg) bottom left no-repeat;
     background-position: calc(0% - 365px) calc(100% + 60px);
 }
 .section2 .head
@@ -325,6 +396,7 @@ header button:active
 }
 .section3 h1
 {
+    color: white;
     font-size: 2.5rem;
     width: 600px;
 }
@@ -518,7 +590,7 @@ footer .copyright
         position: fixed;
         top: 7%;
         align-items: center;
-        background: linear-gradient( transparent , rgba(0, 0, 0, 0.74));
+        background: linear-gradient(var(--linear));
     }
     .nav.change nav
     {
@@ -528,7 +600,7 @@ footer .copyright
         margin-top: -70%;
         width: 50%;
         height: 300px;
-        background-color: white;
+        background-color: var(--bg);
     }
     .nav.change nav li
     {
@@ -629,13 +701,14 @@ footer .copyright
     {
         line-height: 1.7;
         left: -15px;
-        top: -0.5px;
+        top: -0.2px;
     }
     .section1 .right .text p:nth-child(1)
     {
         width: 90%;
         padding: 2px 90px;
         margin-left: -7%;
+        color: white;
         background-color: var(--Very-Pale-Red);
     }
     .section1 .right .text p:nth-child(3)
@@ -643,6 +716,7 @@ footer .copyright
         width: 90%;
         padding: 2px 90px;
         margin-left: -7%;
+        color: white;
         background-color: var(--Very-Pale-Red);
     }
     .section1 .right .text p:nth-child(5)
@@ -650,6 +724,7 @@ footer .copyright
         width: 90%;
         padding: 2px 90px;
         margin-left: -7%;
+        color: white;
         background-color: var(--Very-Pale-Red);
     }
     .section1 .right .text p:nth-child(2)
@@ -728,18 +803,14 @@ footer .copyright
         margin:20px 0;
         width: 100%;
     }
-    footer .attribution
-    {
-        order: 6;
-    }
 }
 @media screen and (max-width: 480px)
 {
     header
     {
         background: 
-        url(./images/bg-tablet-pattern.svg) no-repeat top right ,
-        url(./images/bg-tablet-pattern.svg) no-repeat bottom right;
+        var(--bgmg) no-repeat top right ,
+        var(--bgmg) no-repeat bottom right;
         background-size: 100% , 100%;
         background-position: calc(100% + 50px) calc(0% - 50px) , calc(0% + 250px) calc(100% - 50px) ;
     }
